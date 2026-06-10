@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FLZ — Gabriel Flauzino · Digital Illustration & Concept Art</title>
+  <meta name="description" content="Portfolio of Gabriel Flauzino — freelance digital illustrator and concept artist. Illustrations, concept art and open commissions." />
+
+  <!-- Type: Syncopate (display, stand-in for Sackers Gothic),
+       Hanken Grotesk (body), IBM Plex Mono (coordinates) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Hanken+Grotesk:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+</head>
+<body>
+  <a class="skip-link" href="#content" data-i18n="skip">Skip to content</a>
+
+  <!-- ============ Cartographic navigation ============ -->
+  <nav class="site-nav" aria-label="Main">
+    <div class="container site-nav__inner">
+      <a class="site-nav__logo" href="index.html" aria-label="FLZ — home">
+        FLZ<span aria-hidden="true"></span>
+      </a>
+      <ul class="site-nav__links">
+        <li><a href="index.html" aria-current="page" data-i18n="nav.home">Home</a></li>
+        <li><a href="ilustracoes.html" data-i18n="nav.illustrations">Illustrations</a></li>
+        <li><a href="concept-art.html" data-i18n="nav.concept">Concept Art</a></li>
+        <li><a href="commissions.html" data-i18n="nav.commissions">Commissions</a></li>
+        <li><button class="lang-toggle" type="button" data-lang-toggle>PT</button></li>
+      </ul>
+      <span class="coord site-nav__coord" aria-hidden="true">27°35'49"S&nbsp;48°32'56"W</span>
+    </div>
+  </nav>
+
+  <!-- Banner: o uso nobre do vermelho escuro -->
+  <div class="notice-banner">
+    <span data-i18n="banner.text">Commissions are open</span>
+    <a href="commissions.html" data-i18n="banner.cta">Request a quote →</a>
+  </div>
+
+  <main id="content" data-category="featured">
+    <!-- ============ Hero ============ -->
+    <header class="hero container">
+      <!-- Reticle: rotating cartographic ring behind the mark -->
+      <svg class="hero__reticle" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="currentColor" stroke-width="0.4">
+          <circle cx="100" cy="100" r="96" />
+          <circle cx="100" cy="100" r="78" stroke-dasharray="2 5" />
+          <circle cx="100" cy="100" r="52" />
+          <path d="M100 2v10 M100 188v10 M2 100h10 M188 100h10" stroke-width="0.7" />
+          <g stroke-dasharray="1 11">
+            <circle cx="100" cy="100" r="88" stroke-width="2" />
+          </g>
+        </g>
+      </svg>
+
+      <span class="hero__corner hero__corner--tl coord" aria-hidden="true">SECTOR // PORTFOLIO</span>
+      <span class="hero__corner hero__corner--br coord" aria-hidden="true">REV. 2026.06</span>
+
+      <p class="hero__eyebrow coord">Gabriel Flauzino</p>
+      <h1 class="hero__title">FLZ</h1>
+      <p class="hero__tag" data-i18n="hero.tag">
+        Digital illustration and concept art — worlds mapped one stroke at a time.
+      </p>
+    </header>
+
+    <!-- ============ Featured ============ -->
+    <section class="featured container" aria-labelledby="featured-title">
+      <div class="section-head" data-reveal>
+        <h2 id="featured-title" data-i18n="home.featured">Featured</h2>
+        <span class="coord" aria-hidden="true" data-i18n="home.featuredCoord">HIGHLIGHTED NODES</span>
+      </div>
+
+      <!-- Rendered by js/gallery.js from data/portfolio.json -->
+      <div class="gallery-grid" data-gallery></div>
+    </section>
+  </main>
+
+  <!-- ============ Lightbox: map node ============ -->
+  <div class="lightbox" data-lightbox role="dialog" aria-modal="true" aria-label="Artwork details" data-i18n-aria="lb.label">
+    <article class="lightbox__panel">
+      <header class="lightbox__bar">
+        <span class="coord" data-lb-coord aria-hidden="true"></span>
+        <div class="lightbox__nav">
+          <button class="lightbox__btn" type="button" data-lb-prev data-i18n="lb.prev">← Prev</button>
+          <button class="lightbox__btn" type="button" data-lb-next data-i18n="lb.next">Next →</button>
+          <button class="lightbox__btn" type="button" data-lb-close data-i18n="lb.close">Close ✕</button>
+        </div>
+      </header>
+      <div class="lightbox__body">
+        <img class="lightbox__cover" data-lb-cover src="" alt="" />
+        <div class="lightbox__info">
+          <h2 data-lb-title></h2>
+          <p class="lightbox__desc" data-lb-desc></p>
+        </div>
+        <div class="lightbox__extras" data-lb-extras></div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ============ Footer ============ -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <span class="coord">FLZ © <span data-year>2026</span></span>
+      <a class="coord" href="commissions.html" data-i18n="footer.commissions">Commissions open →</a>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/lightbox.js" defer></script>
+  <script src="js/gallery.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+/* ============================================================
+   base.css — Fundação · v2
+   Tema claro: papel quente, sem grid de fundo (a retícula no
+   hero é o único elemento cartográfico ambiente). Tipografia
+   menor e mais delicada.
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+
+  /* Textura mínima: um vinhete radial quase imperceptível dá ao
+     papel a profundidade da tela do Destiny — sem grades. */
+  background-image:
+    radial-gradient(ellipse 130% 100% at 50% 0%,
+      rgba(245, 243, 238, 0.9), transparent 70%);
+  background-attachment: fixed;
+}
+
+main {
+  flex: 1;
+  width: 100%;
+}
+
+/* ---- Tipografia ---------------------------------------- */
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400; /* peso leve: delicadeza > impacto */
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--text-xl); }
+h2 { font-size: var(--text-lg); }
+h3 { font-size: var(--text-base); }
+
+p { max-width: 62ch; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-map);
+}
+
+a:hover { color: var(--accent-hot); }
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg-raised);
+}
+
+/* ---- Utilidades ----------------------------------------- */
+
+.container {
+  width: min(var(--container), 100% - var(--gutter) * 2);
+  margin-inline: auto;
+}
+
+/* Rótulo monoespaçado: coordenadas, índices, eyebrows */
+.coord {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---- Acessibilidade ------------------------------------- */
+
+.skip-link {
+  position: absolute;
+  top: var(--space-1);
+  left: var(--space-1);
+  z-index: calc(var(--z-nav) + 1);
+  padding: var(--space-1) var(--space-2);
+  background: var(--bg-raised);
+  border: 1px solid var(--accent-hot);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  transform: translateY(-300%);
+  transition: transform var(--dur-fast) var(--ease-map);
+}
+
+.skip-link:focus { transform: translateY(0); }
+
+:focus-visible {
+  outline: 1px solid var(--accent-hot);
+  outline-offset: 3px;
+}
+
+/* Revelação ao rolar — ativada via JS (IntersectionObserver).
+   Sem JS ou com reduced-motion, tudo permanece visível. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity var(--dur-slow) var(--ease-map),
+      transform var(--dur-slow) var(--ease-map);
+  }
+
+  .js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html { scroll-behavior: auto; }
+}

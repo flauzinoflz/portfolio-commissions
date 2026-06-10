@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Placeholder: GLASS-RUINS">
+  <rect width="800" height="1000" fill="#e4e1da"/>
+  <g stroke="#1b1313" stroke-opacity="0.07" stroke-width="1">
+    <line x1="60" y1="0" x2="60" y2="1000"/>
+<line x1="120" y1="0" x2="120" y2="1000"/>
+<line x1="180" y1="0" x2="180" y2="1000"/>
+<line x1="240" y1="0" x2="240" y2="1000"/>
+<line x1="300" y1="0" x2="300" y2="1000"/>
+<line x1="360" y1="0" x2="360" y2="1000"/>
+<line x1="420" y1="0" x2="420" y2="1000"/>
+<line x1="480" y1="0" x2="480" y2="1000"/>
+<line x1="540" y1="0" x2="540" y2="1000"/>
+<line x1="600" y1="0" x2="600" y2="1000"/>
+<line x1="660" y1="0" x2="660" y2="1000"/>
+<line x1="720" y1="0" x2="720" y2="1000"/>
+<line x1="780" y1="0" x2="780" y2="1000"/>
+    <line x1="0" y1="60" x2="800" y2="60"/>
+<line x1="0" y1="120" x2="800" y2="120"/>
+<line x1="0" y1="180" x2="800" y2="180"/>
+<line x1="0" y1="240" x2="800" y2="240"/>
+<line x1="0" y1="300" x2="800" y2="300"/>
+<line x1="0" y1="360" x2="800" y2="360"/>
+<line x1="0" y1="420" x2="800" y2="420"/>
+<line x1="0" y1="480" x2="800" y2="480"/>
+<line x1="0" y1="540" x2="800" y2="540"/>
+<line x1="0" y1="600" x2="800" y2="600"/>
+<line x1="0" y1="660" x2="800" y2="660"/>
+<line x1="0" y1="720" x2="800" y2="720"/>
+<line x1="0" y1="780" x2="800" y2="780"/>
+<line x1="0" y1="840" x2="800" y2="840"/>
+<line x1="0" y1="900" x2="800" y2="900"/>
+<line x1="0" y1="960" x2="800" y2="960"/>
+  </g>
+  <g fill="none" stroke="#7a1f1a" stroke-width="1.2">
+    <circle cx="400" cy="500" r="160" stroke-opacity="0.7"/>
+    <circle cx="400" cy="500" r="266" stroke-dasharray="3 9" stroke-opacity="0.4"/>
+    <path d="M400 486v28 M386 500h28" stroke="#a3261d"/>
+  </g>
+  <text x="400" y="964" text-anchor="middle" fill="#99908a" font-family="monospace" font-size="15" letter-spacing="4">GLASS-RUINS · COVER</text>
+</svg>
