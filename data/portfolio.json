@@ -1,0 +1,120 @@
+{
+  "$schema_note": "Each work: id (slug = folder in assets/img/works), title, category ('illustration' | 'concept-art'), cover (URL), images (array of URLs, optional), description ({en, pt}), alt ({en, pt}, optional), year, featured (shown on home).",
+  "works": [
+    {
+      "id": "vigia-do-deserto",
+      "title": "Desert Watcher",
+      "category": "illustration",
+      "cover": "assets/img/works/vigia-do-deserto/cover.svg",
+      "images": [
+        "assets/img/works/vigia-do-deserto/01.svg",
+        "assets/img/works/vigia-do-deserto/02.svg"
+      ],
+      "description": {
+        "en": "A lone sentinel over iron dunes. A study in harsh midday light and instantly readable silhouette.",
+        "pt": "Sentinela solitária sobre dunas de ferro. Estudo de luz dura do meio-dia e silhueta de leitura imediata."
+      },
+      "alt": {
+        "en": "Hooded figure watching a reddish desert from a tower",
+        "pt": "Figura encapuzada observando um deserto avermelhado do alto de uma torre"
+      },
+      "year": 2026,
+      "featured": true
+    },
+    {
+      "id": "cartografa",
+      "title": "Cartographer",
+      "category": "illustration",
+      "cover": "assets/img/works/cartografa/cover.svg",
+      "images": [
+        "assets/img/works/cartografa/01.svg"
+      ],
+      "description": {
+        "en": "Character portrait surrounded by navigation instruments. The piece that seeded this website's visual identity.",
+        "pt": "Retrato de personagem cercada por instrumentos de navegação. A peça que deu origem à identidade visual deste site."
+      },
+      "alt": {
+        "en": "Portrait of a cartographer among maps and compasses",
+        "pt": "Retrato de uma cartógrafa entre mapas e bússolas"
+      },
+      "year": 2025,
+      "featured": true
+    },
+    {
+      "id": "ultimo-farol",
+      "title": "Last Lighthouse",
+      "category": "illustration",
+      "cover": "assets/img/works/ultimo-farol/cover.svg",
+      "images": [],
+      "description": {
+        "en": "A dense nocturnal scene — a single point of warm light against the coast's cold palette.",
+        "pt": "Cena noturna de atmosfera densa — um único ponto de luz quente contra a paleta fria da costa."
+      },
+      "alt": {
+        "en": "Lit lighthouse on a rocky coast under a night sky",
+        "pt": "Farol aceso numa costa rochosa sob céu noturno"
+      },
+      "year": 2025,
+      "featured": false
+    },
+    {
+      "id": "colosso-adormecido",
+      "title": "Sleeping Colossus",
+      "category": "concept-art",
+      "cover": "assets/img/works/colosso-adormecido/cover.svg",
+      "images": [
+        "assets/img/works/colosso-adormecido/01.svg",
+        "assets/img/works/colosso-adormecido/02.svg"
+      ],
+      "description": {
+        "en": "Creature-environment concept: an ancient machine fused with the landscape. Includes scale studies and surface callouts.",
+        "pt": "Concept de criatura-ambiente: uma máquina ancestral incorporada à paisagem. Inclui estudos de escala e callouts de superfície."
+      },
+      "alt": {
+        "en": "Giant machine covered in vegetation, half buried in a valley",
+        "pt": "Máquina gigante coberta de vegetação, parcialmente enterrada num vale"
+      },
+      "year": 2026,
+      "featured": true
+    },
+    {
+      "id": "ruinas-de-vidro",
+      "title": "Glass Ruins",
+      "category": "concept-art",
+      "cover": "assets/img/works/ruinas-de-vidro/cover.svg",
+      "images": [
+        "assets/img/works/ruinas-de-vidro/01.svg"
+      ],
+      "description": {
+        "en": "Worldbuilding environment: a city crystallized after an unknown event. Keyframe plus palette variations.",
+        "pt": "Ambiente para worldbuilding: cidade cristalizada após um evento desconhecido. Keyframe + variações de paleta."
+      },
+      "alt": {
+        "en": "Ruined city with translucent structures reflecting red light",
+        "pt": "Cidade em ruínas com estruturas translúcidas refletindo luz vermelha"
+      },
+      "year": 2025,
+      "featured": false
+    },
+    {
+      "id": "sonda-errante",
+      "title": "Wandering Probe",
+      "category": "concept-art",
+      "cover": "assets/img/works/sonda-errante/cover.svg",
+      "images": [
+        "assets/img/works/sonda-errante/01.svg",
+        "assets/img/works/sonda-errante/02.svg"
+      ],
+      "description": {
+        "en": "Prop design: a reconnaissance probe with a functional shape language. Orthographics and material exploration.",
+        "pt": "Design de prop: sonda de reconhecimento com linguagem de formas funcional. Ortográficas e exploração de materiais."
+      },
+      "alt": {
+        "en": "Small flying probe with antennas and identification markings",
+        "pt": "Pequena sonda voadora com antenas e marcações de identificação"
+      },
+      "year": 2024,
+      "featured": false
+    }
+  ]
+}

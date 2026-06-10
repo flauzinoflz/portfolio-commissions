@@ -1,0 +1,62 @@
+/* ============================================================
+   tokens.css — Sistema de design FLZ · v2 (light)
+   ------------------------------------------------------------
+   Fonte única da identidade. Tokens agora são SEMÂNTICOS
+   (--bg, --ink, --accent): inverter o tema = editar este bloco.
+   ============================================================ */
+
+:root {
+  /* ---- Cor ------------------------------------------------
+     Branco quente da tela-título de Destiny 2: papel envelhecido,
+     nunca branco puro. O #1b1313 vira a tinta do texto; o vermelho
+     escuro fica reservado para banners e ênfase. */
+  --bg:        #eceae4; /* superfície principal — papel quente */
+  --bg-deep:   #e4e1da; /* áreas rebaixadas */
+  --bg-raised: #f5f3ee; /* painéis elevados (lightbox) */
+  --ink:       #1b1313; /* texto primário — preto com alma vermelha */
+  --ink-dim:   #5f5651; /* texto secundário */
+  --ink-faint: #99908a; /* legendas, coordenadas decorativas */
+  --accent:    #7a1f1a; /* vermelho escuro — banners e destaque */
+  --accent-hot:#a3261d; /* interação ativa (hover, foco) */
+
+  /* Linhas cartográficas: finas, em tinta translúcida */
+  --line:        rgba(27, 19, 19, 0.16);
+  --line-strong: rgba(27, 19, 19, 0.34);
+
+  /* ---- Tipografia -----------------------------------------
+     Syncopate segue como stand-in da Sackers Gothic. Para usar a
+     licenciada: @font-face em base.css + trocar esta linha. */
+  --font-display: "Syncopate", "Sackers Gothic Std", sans-serif;
+  --font-body:    "Hanken Grotesk", system-ui, sans-serif;
+  --font-mono:    "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Escala reduzida e delicada — editorial, não monumental */
+  --text-xs:   0.66rem;
+  --text-sm:   0.8rem;
+  --text-base: clamp(0.88rem, 0.85rem + 0.15vw, 0.95rem);
+  --text-lg:   clamp(0.95rem, 0.9rem + 0.3vw, 1.1rem);
+  --text-xl:   clamp(1.05rem, 0.95rem + 0.6vw, 1.5rem);
+  --text-hero: clamp(1.7rem, 1.2rem + 2.6vw, 3.4rem);
+
+  --tracking-wide: 0.22em;
+  --tracking-max:  0.42em;
+
+  /* ---- Espaço & layout ------------------------------------ */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.75rem;
+  --space-4: 3rem;
+  --space-5: clamp(4rem, 3rem + 5vw, 8rem);
+  --container: 1200px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+
+  /* ---- Movimento ------------------------------------------ */
+  --ease-map: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 180ms;
+  --dur-base: 360ms;
+  --dur-slow: 700ms;
+
+  /* ---- Z-index -------------------------------------------- */
+  --z-nav: 100;
+  --z-lightbox: 200;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concept Art — FLZ · Gabriel Flauzino</title>
+  <meta name="description" content="Concept art gallery by Gabriel Flauzino (FLZ): characters, environments and world design." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Hanken+Grotesk:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+</head>
+<body>
+  <a class="skip-link" href="#content" data-i18n="skip">Skip to content</a>
+
+  <nav class="site-nav" aria-label="Main">
+    <div class="container site-nav__inner">
+      <a class="site-nav__logo" href="index.html" aria-label="FLZ — home">
+        FLZ<span aria-hidden="true"></span>
+      </a>
+      <ul class="site-nav__links">
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="ilustracoes.html" data-i18n="nav.illustrations">Illustrations</a></li>
+        <li><a href="concept-art.html" aria-current="page" data-i18n="nav.concept">Concept Art</a></li>
+        <li><a href="commissions.html" data-i18n="nav.commissions">Commissions</a></li>
+        <li><button class="lang-toggle" type="button" data-lang-toggle>PT</button></li>
+      </ul>
+      <span class="coord site-nav__coord" aria-hidden="true">27°35'49"S&nbsp;48°32'56"W</span>
+    </div>
+  </nav>
+
+  <!-- data-category feeds the filter in js/gallery.js -->
+  <main id="content" class="container" data-category="concept-art">
+    <div class="section-head">
+      <h1 data-i18n="page.concept">Concept Art</h1>
+      <span class="coord" aria-hidden="true">REGION 02 // CPT</span>
+    </div>
+
+    <div class="gallery-grid" data-gallery></div>
+  </main>
+
+  <div class="lightbox" data-lightbox role="dialog" aria-modal="true" aria-label="Artwork details" data-i18n-aria="lb.label">
+    <article class="lightbox__panel">
+      <header class="lightbox__bar">
+        <span class="coord" data-lb-coord aria-hidden="true"></span>
+        <div class="lightbox__nav">
+          <button class="lightbox__btn" type="button" data-lb-prev data-i18n="lb.prev">← Prev</button>
+          <button class="lightbox__btn" type="button" data-lb-next data-i18n="lb.next">Next →</button>
+          <button class="lightbox__btn" type="button" data-lb-close data-i18n="lb.close">Close ✕</button>
+        </div>
+      </header>
+      <div class="lightbox__body">
+        <img class="lightbox__cover" data-lb-cover src="" alt="" />
+        <div class="lightbox__info">
+          <h2 data-lb-title></h2>
+          <p class="lightbox__desc" data-lb-desc></p>
+        </div>
+        <div class="lightbox__extras" data-lb-extras></div>
+      </div>
+    </article>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <span class="coord">FLZ © <span data-year>2026</span></span>
+      <a class="coord" href="commissions.html" data-i18n="footer.commissions">Commissions open →</a>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/lightbox.js" defer></script>
+  <script src="js/gallery.js" defer></script>
+</body>
+</html>

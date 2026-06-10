@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Commissions — FLZ · Gabriel Flauzino</title>
+  <meta name="description" content="Digital illustration and concept art commissions with Gabriel Flauzino (FLZ): available styles, terms and contact." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Hanken+Grotesk:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+</head>
+<body>
+  <a class="skip-link" href="#content" data-i18n="skip">Skip to content</a>
+
+  <nav class="site-nav" aria-label="Main">
+    <div class="container site-nav__inner">
+      <a class="site-nav__logo" href="index.html" aria-label="FLZ — home">
+        FLZ<span aria-hidden="true"></span>
+      </a>
+      <ul class="site-nav__links">
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="ilustracoes.html" data-i18n="nav.illustrations">Illustrations</a></li>
+        <li><a href="concept-art.html" data-i18n="nav.concept">Concept Art</a></li>
+        <li><a href="commissions.html" aria-current="page" data-i18n="nav.commissions">Commissions</a></li>
+        <li><button class="lang-toggle" type="button" data-lang-toggle>PT</button></li>
+      </ul>
+      <span class="coord site-nav__coord" aria-hidden="true">27°35'49"S&nbsp;48°32'56"W</span>
+    </div>
+  </nav>
+
+  <main id="content" class="container">
+    <div class="section-head">
+      <h1 data-i18n="page.commissions">Commissions</h1>
+      <span class="coord" aria-hidden="true">REGION 03 // COM</span>
+    </div>
+
+    <div class="commissions">
+      <p class="commission-status" data-i18n="comm.status">Status: open</p>
+
+      <p data-i18n="comm.intro">
+        I take commissions for digital illustration and concept art — from
+        character portraits to environment and prop design. Every project
+        starts with a conversation: you describe the idea, I reply with
+        scope, timeline and price.
+      </p>
+
+      <!-- ===== Available styles ===== -->
+      <section aria-labelledby="styles">
+        <h2 id="styles" data-i18n="comm.styles">Available styles</h2>
+        <ul>
+          <li data-i18n="comm.styles.1">Character illustration — bust, half body or full body</li>
+          <li data-i18n="comm.styles.2">Character, creature and prop concept art</li>
+          <li data-i18n="comm.styles.3">Environment concept art and keyframes</li>
+          <li data-i18n="comm.styles.4">Covers and promotional art (games, books, music)</li>
+        </ul>
+      </section>
+
+      <!-- ===== Terms ===== -->
+      <section aria-labelledby="terms">
+        <h2 id="terms" data-i18n="comm.terms">Terms</h2>
+        <ul>
+          <li data-i18n="comm.terms.1">50% upfront, 50% on final delivery</li>
+          <li data-i18n="comm.terms.2">Up to two revision rounds included at sketch stage</li>
+          <li data-i18n="comm.terms.3">Timelines set per project — 2 to 4 weeks on average</li>
+          <li data-i18n="comm.terms.4">Commercial use negotiated separately; personal use included</li>
+          <li data-i18n="comm.terms.5">Not accepted: hateful content, plagiarism of living artists, NFT</li>
+        </ul>
+      </section>
+
+      <!-- ===== Process ===== -->
+      <section aria-labelledby="process">
+        <h2 id="process" data-i18n="comm.process">How it works</h2>
+        <ul>
+          <li data-i18n="comm.process.1">Brief — you send references and a description of the idea</li>
+          <li data-i18n="comm.process.2">Proposal — scope, timeline and budget agreed in writing</li>
+          <li data-i18n="comm.process.3">Sketch — composition approved before final rendering</li>
+          <li data-i18n="comm.process.4">Delivery — high-resolution file + web-ready versions</li>
+        </ul>
+      </section>
+
+      <!-- ===== Contact ===== -->
+      <section aria-labelledby="contact">
+        <h2 id="contact" data-i18n="comm.contact">Contact</h2>
+        <p data-i18n="comm.contactText">
+          Send your idea by email with the subject “Commission”.
+          I reply within 48 business hours.
+        </p>
+        <!-- TODO: replace with your real email before deploying -->
+        <a class="contact-link" href="mailto:contato@flz.art">contato@flz.art</a>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <span class="coord">FLZ © <span data-year>2026</span></span>
+      <a class="coord" href="ilustracoes.html" data-i18n="footer.gallery">View gallery →</a>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
