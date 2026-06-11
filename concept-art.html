@@ -3,6 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- O idioma é controlado pelo nosso i18n (js/i18n.js): impede o
+       Chrome de oferecer tradução automática a cada navegação -->
+  <meta name="google" content="notranslate" />
+  <!-- Sincroniza <html lang> com a preferência salva ANTES do paint:
+       sem flash de idioma e sem detecção errada pelo navegador -->
+  <script>
+    try {
+      if (localStorage.getItem("flz-lang") === "pt") {
+        document.documentElement.lang = "pt-BR";
+      }
+    } catch (e) { /* sem storage: segue em inglês */ }
+  </script>
   <title>Concept Art — FLZ · Gabriel Flauzino</title>
   <meta name="description" content="Concept art gallery by Gabriel Flauzino (FLZ): characters, environments and world design." />
 
@@ -28,6 +40,7 @@
         <li><a href="ilustracoes.html" data-i18n="nav.illustrations">Illustrations</a></li>
         <li><a href="concept-art.html" aria-current="page" data-i18n="nav.concept">Concept Art</a></li>
         <li><a href="commissions.html" data-i18n="nav.commissions">Commissions</a></li>
+        <li><a href="about.html" data-i18n="nav.about">About</a></li>
         <li><button class="lang-toggle" type="button" data-lang-toggle>PT</button></li>
       </ul>
       <span class="coord site-nav__coord" aria-hidden="true">27°35'49"S&nbsp;48°32'56"W</span>
@@ -65,7 +78,7 @@
     </article>
   </div>
 
-  <footer class="site-footer">
+  <footer class="site-footer band-dark">
     <div class="container site-footer__inner">
       <span class="coord">FLZ © <span data-year>2026</span></span>
       <a class="coord" href="commissions.html" data-i18n="footer.commissions">Commissions open →</a>

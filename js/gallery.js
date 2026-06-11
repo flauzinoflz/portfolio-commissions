@@ -15,8 +15,18 @@ const category = document.querySelector("main")?.dataset.category;
 if (grid) loadGallery();
 
 async function loadGallery() {
-  grid.innerHTML =
-    `<p class="gallery-status coord" role="status">${FLZ.t("gallery.loading")}</p>`;
+  // Spinner: micro-retícula (rotação com propósito, não decoração)
+  grid.innerHTML = `
+    <p class="gallery-status" role="status">
+      <svg class="spinner-reticle" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="currentColor" stroke-width="1.4">
+          <circle cx="24" cy="24" r="21" stroke-dasharray="3 7" />
+          <circle cx="24" cy="24" r="12" />
+          <path d="M24 1v6 M24 41v6 M1 24h6 M41 24h6" />
+        </g>
+      </svg>
+      <span class="coord">${FLZ.t("gallery.loading")}</span>
+    </p>`;
 
   try {
     const response = await fetch("data/portfolio.json");
