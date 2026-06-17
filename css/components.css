@@ -169,6 +169,28 @@
   .gallery-grid { grid-template-columns: 1fr; }
 }
 
+/* ---- Galeria empilhada (Ilustrações / Concept Art) ---------
+   Uma obra por linha, largura total do container (editorial e
+   contida — as margens vêm do .container). Altura natural: o card
+   não impõe aspect-ratio, então cada imagem mantém sua proporção
+   real, reservada pelo width/height do <img> (zero layout shift).
+   Sem legenda — só a imagem. Brackets HUD herdados do .work-card. */
+.gallery-stack {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5); /* respiro generoso entre obras */
+  padding-bottom: var(--space-5);
+}
+
+/* Anula o aspect-ratio fixo: na stack a altura é a da imagem */
+.gallery-stack .work-card__media {
+  aspect-ratio: auto;
+}
+
+.gallery-stack .work-card__media img {
+  height: auto; /* deixa o width/height real ditar a altura */
+}
+
 /* Card sem moldura (ref. A. Darvishi): imagem + legenda mínima.
    A estrutura cartográfica aparece só na interação. */
 .work-card {

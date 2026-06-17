@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1000" role="img" aria-label="Placeholder: SAMPLE 01">
+  <rect width="1400" height="1000" fill="#cdc9c0"/>
+  <g stroke="#1b1313" stroke-opacity="0.06" stroke-width="1">
+    <line x1="80" y1="0" x2="80" y2="1000"/>
+<line x1="160" y1="0" x2="160" y2="1000"/>
+<line x1="240" y1="0" x2="240" y2="1000"/>
+<line x1="320" y1="0" x2="320" y2="1000"/>
+<line x1="400" y1="0" x2="400" y2="1000"/>
+<line x1="480" y1="0" x2="480" y2="1000"/>
+<line x1="560" y1="0" x2="560" y2="1000"/>
+<line x1="640" y1="0" x2="640" y2="1000"/>
+<line x1="720" y1="0" x2="720" y2="1000"/>
+<line x1="800" y1="0" x2="800" y2="1000"/>
+<line x1="880" y1="0" x2="880" y2="1000"/>
+<line x1="960" y1="0" x2="960" y2="1000"/>
+<line x1="1040" y1="0" x2="1040" y2="1000"/>
+<line x1="1120" y1="0" x2="1120" y2="1000"/>
+<line x1="1200" y1="0" x2="1200" y2="1000"/>
+<line x1="1280" y1="0" x2="1280" y2="1000"/>
+<line x1="1360" y1="0" x2="1360" y2="1000"/>
+    <line x1="0" y1="80" x2="1400" y2="80"/>
+<line x1="0" y1="160" x2="1400" y2="160"/>
+<line x1="0" y1="240" x2="1400" y2="240"/>
+<line x1="0" y1="320" x2="1400" y2="320"/>
+<line x1="0" y1="400" x2="1400" y2="400"/>
+<line x1="0" y1="480" x2="1400" y2="480"/>
+<line x1="0" y1="560" x2="1400" y2="560"/>
+<line x1="0" y1="640" x2="1400" y2="640"/>
+<line x1="0" y1="720" x2="1400" y2="720"/>
+<line x1="0" y1="800" x2="1400" y2="800"/>
+<line x1="0" y1="880" x2="1400" y2="880"/>
+<line x1="0" y1="960" x2="1400" y2="960"/>
+  </g>
+  <g fill="none" stroke="#7a1f1a" stroke-width="1.4">
+    <circle cx="700" cy="500" r="280" stroke-opacity="0.55"/>
+    <circle cx="700" cy="500" r="466" stroke-dasharray="3 9" stroke-opacity="0.35"/>
+    <path d="M700 484v32 M684 500h32" stroke="#a3261d"/>
+  </g>
+  <text x="700" y="505" text-anchor="middle" fill="#1b1313" fill-opacity="0.4" font-family="monospace" font-size="63" letter-spacing="6">SAMPLE 01</text>
+  <text x="700" y="956" text-anchor="middle" fill="#99908a" font-family="monospace" font-size="35" letter-spacing="5">DETAIL 02</text>
+</svg>

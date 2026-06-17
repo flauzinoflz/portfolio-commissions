@@ -12,6 +12,11 @@
 const grid = document.querySelector("[data-gallery]");
 const category = document.querySelector("main")?.dataset.category;
 
+/* Modo de exibição derivado do container: a galeria empilhada
+   (.gallery-stack, páginas de Ilustrações/Concept Art) mostra só
+   a imagem; o grid (.gallery-grid) mantém a legenda. */
+const isStack = grid?.classList.contains("gallery-stack");
+
 if (grid) loadGallery();
 
 async function loadGallery() {
@@ -93,7 +98,19 @@ function buildCard(work, index) {
   img.alt = localized(work.alt) || work.title;
   img.loading = "lazy";
   img.decoding = "async";
+  /* width/height reais do JSON: o navegador deriva o aspect-ratio
+     e reserva o espaço exato antes do download — zero layout shift.
+     Na stack a altura é natural; no grid o CSS força 4:5. */
+  if (work.width && work.height) {
+    img.width = work.width;
+    img.height = work.height;
+  }
   media.appendChild(img);
+
+  card.appendChild(media);
+
+  /* Galeria empilhada: só a imagem. Sem legenda, título ou coord. */
+  if (isStack) return card;
 
   const meta = document.createElement("div");
   meta.className = "work-card__meta";
@@ -109,7 +126,7 @@ function buildCard(work, index) {
   coord.textContent = `${String(index + 1).padStart(2, "0")}/${tag}`;
 
   meta.append(title, coord);
-  card.append(media, meta);
+  card.appendChild(meta);
   return card;
 }
 
