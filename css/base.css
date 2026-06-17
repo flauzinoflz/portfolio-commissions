@@ -15,6 +15,9 @@
 html {
   color-scheme: light;
   scroll-behavior: smooth;
+  /* Trava qualquer vazamento horizontal (fix do out-of-bounds
+     no mobile): clip não cria contexto de rolagem, só corta. */
+  overflow-x: clip;
 }
 
 body {
@@ -28,14 +31,24 @@ body {
   font-weight: 400;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 
   /* Textura mínima: um vinhete radial quase imperceptível dá ao
      papel a profundidade da tela do Destiny — sem grades. */
   background-image:
     radial-gradient(ellipse 130% 100% at 50% 0%,
-      rgba(245, 243, 238, 0.9), transparent 70%);
+      rgba(245, 243, 238, 0.9), transparent 70%),
+    radial-gradient(ellipse 110% 110% at 50% 50%,
+      transparent 62%, rgba(27, 19, 19, 0.10) 100%);
   background-attachment: fixed;
 }
+
+@media (max-width: 768px) {
+  body { background-attachment: scroll; } /* iOS: evita jank */
+}
+
+/* Mídia nunca estoura o viewport */
+img, svg, video { max-width: 100%; }
 
 main {
   flex: 1;
@@ -132,6 +145,56 @@ button {
 :focus-visible {
   outline: 1px solid var(--accent-hot);
   outline-offset: 3px;
+}
+
+/* ---- Transição entre páginas ------------------------------
+   Camada 1: View Transitions API multi-página (Chrome 126+,
+   Safari 18.2+) — crossfade nativo declarado só em CSS.
+   Camada 2: fallback em main.js (fade-out no clique) para os
+   demais navegadores. Ambas respeitam reduced-motion. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 300ms;
+    animation-timing-function: var(--ease-map);
+  }
+
+  /* A marca registrada da transição profissional: nav e rodapé
+     são capturados como grupos próprios e ficam IMÓVEIS — só o
+     conteúdo central cruza. Sensação de app, não de reload. */
+  .site-nav { view-transition-name: site-nav; }
+  .site-footer { view-transition-name: site-footer; }
+
+  ::view-transition-group(site-nav),
+  ::view-transition-group(site-footer) {
+    animation-duration: 0s;
+  }
+
+  ::view-transition-old(site-nav),
+  ::view-transition-new(site-nav),
+  ::view-transition-old(site-footer),
+  ::view-transition-new(site-footer) {
+    animation-duration: 0s;
+  }
+
+  /* Entrada suave em qualquer navegador — só o conteúdo */
+  .js main {
+    animation: page-in var(--dur-base) var(--ease-map);
+  }
+
+  /* Saída (fallback JS): nav e rodapé permanecem, main esmaece */
+  body.is-leaving main {
+    opacity: 0;
+    transition: opacity 200ms var(--ease-map);
+  }
+}
+
+@keyframes page-in {
+  from { opacity: 0; }
 }
 
 /* Revelação ao rolar — ativada via JS (IntersectionObserver).

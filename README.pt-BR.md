@@ -64,6 +64,7 @@ flz-portfolio/
 ├── ilustracoes.html        # Galeria filtrada: illustration
 ├── concept-art.html        # Galeria filtrada: concept-art
 ├── commissions.html        # Termos, estilos e contato
+├── about.html              # Bio, foto, redes, timeline de experiência
 ├── data/
 │   └── portfolio.json      # Fonte única de conteúdo (campos bilíngues)
 ├── css/
@@ -131,6 +132,13 @@ de IA é hoje parte do ofício de desenvolvimento.
 - [x] **v1 — Frontend estático** (tema escuro)
 - [x] **v2 — Rebrand + i18n**: tema claro "papel Destiny", sistema de
   idiomas EN/PT, minimalismo editorial
+- [x] **v0.3 — Polimento**: fix de overflow no mobile, transições nativas
+  entre páginas (View Transitions API + fallback JS), bandas escuras para
+  reduzir o cansaço visual, spinner-retícula no carregamento e fix do
+  prompt de tradução do navegador
+- [x] **v0.4 — Página About**: `about.html` dedicada (foto, bio, redes,
+  timeline de experiência); transições profissionais com nav/rodapé
+  persistentes — só o conteúdo da página faz o crossfade
 - [ ] **v3 — API de comissões**: backend em **FastAPI + PostgreSQL** com
   formulário de pedido, fila com status público e painel administrativo.
   O frontend já está pronto: a página Commissions passa a consumir a API

@@ -63,6 +63,7 @@ flz-portfolio/
 ├── ilustracoes.html        # Filtered gallery: illustration
 ├── concept-art.html        # Filtered gallery: concept-art
 ├── commissions.html        # Terms, styles and contact
+├── about.html              # Bio, photo, socials, experience timeline
 ├── data/
 │   └── portfolio.json      # Single content source (bilingual fields)
 ├── css/
@@ -129,6 +130,12 @@ audit** AI work is now part of the craft of development.
 - [x] **v1 — Static frontend** (dark theme)
 - [x] **v2 — Rebrand + i18n**: Destiny-paper light theme, EN/PT language
   system, editorial minimalism
+- [x] **v0.3 — Polish**: mobile overflow fix, native cross-page transitions
+  (View Transitions API + JS fallback), dark bands to reduce eyestrain,
+  reticle loading spinner, browser-translate prompt fix
+- [x] **v0.4 — About page**: dedicated `about.html` (photo, bio, social
+  links, experience timeline); professional transitions with persistent
+  nav/footer — only the page content crossfades
 - [ ] **v3 — Commissions API**: **FastAPI + PostgreSQL** backend with a
   request form, public queue status and an admin panel. The frontend is
   ready: the Commissions page starts consuming the API while keeping the

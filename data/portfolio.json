@@ -1,11 +1,13 @@
 {
-  "$schema_note": "Each work: id (slug = folder in assets/img/works), title, category ('illustration' | 'concept-art'), cover (URL), images (array of URLs, optional), description ({en, pt}), alt ({en, pt}, optional), year, featured (shown on home).",
+  "$schema_note": "Each work: id (slug = folder in assets/img/works), title, category ('illustration' | 'concept-art'), cover (URL), width/height (real pixel size of cover, used to reserve space in the stacked gallery — zero layout shift), images (array of URLs, optional), description ({en, pt}), alt ({en, pt}, optional), year, featured (shown on home).",
   "works": [
     {
       "id": "vigia-do-deserto",
       "title": "Desert Watcher",
       "category": "illustration",
       "cover": "assets/img/works/vigia-do-deserto/cover.svg",
+      "width": 800,
+      "height": 1000,
       "images": [
         "assets/img/works/vigia-do-deserto/01.svg",
         "assets/img/works/vigia-do-deserto/02.svg"
@@ -26,6 +28,8 @@
       "title": "Cartographer",
       "category": "illustration",
       "cover": "assets/img/works/cartografa/cover.svg",
+      "width": 800,
+      "height": 1000,
       "images": [
         "assets/img/works/cartografa/01.svg"
       ],
@@ -45,6 +49,8 @@
       "title": "Last Lighthouse",
       "category": "illustration",
       "cover": "assets/img/works/ultimo-farol/cover.svg",
+      "width": 800,
+      "height": 1000,
       "images": [],
       "description": {
         "en": "A dense nocturnal scene — a single point of warm light against the coast's cold palette.",
@@ -62,6 +68,8 @@
       "title": "Sleeping Colossus",
       "category": "concept-art",
       "cover": "assets/img/works/colosso-adormecido/cover.svg",
+      "width": 800,
+      "height": 1000,
       "images": [
         "assets/img/works/colosso-adormecido/01.svg",
         "assets/img/works/colosso-adormecido/02.svg"
@@ -82,6 +90,8 @@
       "title": "Glass Ruins",
       "category": "concept-art",
       "cover": "assets/img/works/ruinas-de-vidro/cover.svg",
+      "width": 800,
+      "height": 1000,
       "images": [
         "assets/img/works/ruinas-de-vidro/01.svg"
       ],
@@ -101,6 +111,8 @@
       "title": "Wandering Probe",
       "category": "concept-art",
       "cover": "assets/img/works/sonda-errante/cover.svg",
+      "width": 800,
+      "height": 1000,
       "images": [
         "assets/img/works/sonda-errante/01.svg",
         "assets/img/works/sonda-errante/02.svg"
@@ -114,6 +126,138 @@
         "pt": "Pequena sonda voadora com antenas e marcações de identificação"
       },
       "year": 2024,
+      "featured": false
+    },
+    {
+      "id": "sample_01",
+      "title": "Sample 01",
+      "category": "illustration",
+      "cover": "assets/img/works/sample_01/cover.svg",
+      "width": 1600,
+      "height": 1100,
+      "images": [
+        "assets/img/works/sample_01/01.svg",
+        "assets/img/works/sample_01/02.svg"
+      ],
+      "description": {
+        "en": "Template entry — replace this description with the real work's story.",
+        "pt": "Entrada de template — substitua esta descrição pela história real da obra."
+      },
+      "alt": {
+        "en": "Sample 01 — placeholder artwork",
+        "pt": "Sample 01 — arte de exemplo"
+      },
+      "year": 2026,
+      "featured": false
+    },
+    {
+      "id": "sample_02",
+      "title": "Sample 02",
+      "category": "illustration",
+      "cover": "assets/img/works/sample_02/cover.svg",
+      "width": 1200,
+      "height": 1500,
+      "images": [
+        "assets/img/works/sample_02/01.svg",
+        "assets/img/works/sample_02/02.svg"
+      ],
+      "description": {
+        "en": "Template entry — replace this description with the real work's story.",
+        "pt": "Entrada de template — substitua esta descrição pela história real da obra."
+      },
+      "alt": {
+        "en": "Sample 02 — placeholder artwork",
+        "pt": "Sample 02 — arte de exemplo"
+      },
+      "year": 2026,
+      "featured": false
+    },
+    {
+      "id": "sample_03",
+      "title": "Sample 03",
+      "category": "illustration",
+      "cover": "assets/img/works/sample_03/cover.svg",
+      "width": 1500,
+      "height": 1500,
+      "images": [
+        "assets/img/works/sample_03/01.svg",
+        "assets/img/works/sample_03/02.svg"
+      ],
+      "description": {
+        "en": "Template entry — replace this description with the real work's story.",
+        "pt": "Entrada de template — substitua esta descrição pela história real da obra."
+      },
+      "alt": {
+        "en": "Sample 03 — placeholder artwork",
+        "pt": "Sample 03 — arte de exemplo"
+      },
+      "year": 2026,
+      "featured": false
+    },
+    {
+      "id": "sample_04",
+      "title": "Sample 04",
+      "category": "concept-art",
+      "cover": "assets/img/works/sample_04/cover.svg",
+      "width": 1400,
+      "height": 1900,
+      "images": [
+        "assets/img/works/sample_04/01.svg",
+        "assets/img/works/sample_04/02.svg"
+      ],
+      "description": {
+        "en": "Template entry — replace this description with the real work's story.",
+        "pt": "Entrada de template — substitua esta descrição pela história real da obra."
+      },
+      "alt": {
+        "en": "Sample 04 — placeholder artwork",
+        "pt": "Sample 04 — arte de exemplo"
+      },
+      "year": 2026,
+      "featured": false
+    },
+    {
+      "id": "sample_05",
+      "title": "Sample 05",
+      "category": "concept-art",
+      "cover": "assets/img/works/sample_05/cover.svg",
+      "width": 1800,
+      "height": 1000,
+      "images": [
+        "assets/img/works/sample_05/01.svg",
+        "assets/img/works/sample_05/02.svg"
+      ],
+      "description": {
+        "en": "Template entry — replace this description with the real work's story.",
+        "pt": "Entrada de template — substitua esta descrição pela história real da obra."
+      },
+      "alt": {
+        "en": "Sample 05 — placeholder artwork",
+        "pt": "Sample 05 — arte de exemplo"
+      },
+      "year": 2026,
+      "featured": false
+    },
+    {
+      "id": "sample_06",
+      "title": "Sample 06",
+      "category": "concept-art",
+      "cover": "assets/img/works/sample_06/cover.svg",
+      "width": 1300,
+      "height": 1600,
+      "images": [
+        "assets/img/works/sample_06/01.svg",
+        "assets/img/works/sample_06/02.svg"
+      ],
+      "description": {
+        "en": "Template entry — replace this description with the real work's story.",
+        "pt": "Entrada de template — substitua esta descrição pela história real da obra."
+      },
+      "alt": {
+        "en": "Sample 06 — placeholder artwork",
+        "pt": "Sample 06 — arte de exemplo"
+      },
+      "year": 2026,
       "featured": false
     }
   ]

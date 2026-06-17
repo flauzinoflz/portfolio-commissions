@@ -36,3 +36,41 @@ if (revealables.length > 0 && "IntersectionObserver" in window) {
 // Ano corrente no rodapé
 const yearEl = document.querySelector("[data-year]");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+/* ============================================================
+   Transição entre páginas (fallback) · v0.3
+   Navegadores com View Transitions multi-página (CSS
+   @view-transition) fazem o crossfade nativamente — neles este
+   bloco não age. Nos demais, um fade-out curto antes de navegar.
+   ============================================================ */
+
+const supportsViewTransitions = "startViewTransition" in document;
+const prefersMotion = window.matchMedia(
+  "(prefers-reduced-motion: no-preference)"
+).matches;
+
+if (!supportsViewTransitions && prefersMotion) {
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a[href]");
+    if (!link) return;
+
+    const url = new URL(link.href, window.location.href);
+    const isInternalPage =
+      url.origin === window.location.origin &&
+      url.pathname !== window.location.pathname &&
+      !link.hasAttribute("download") &&
+      link.target !== "_blank" &&
+      !event.metaKey && !event.ctrlKey && !event.shiftKey;
+
+    if (!isInternalPage) return;
+
+    event.preventDefault();
+    document.body.classList.add("is-leaving");
+    setTimeout(() => { window.location.href = url.href; }, 200);
+  });
+
+  // bfcache: voltar com o botão do navegador não pode ficar opaco
+  window.addEventListener("pageshow", () => {
+    document.body.classList.remove("is-leaving");
+  });
+}

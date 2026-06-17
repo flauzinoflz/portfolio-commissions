@@ -13,7 +13,7 @@
   text-align: center;
   min-height: clamp(420px, 64dvh, 720px);
   padding-block: var(--space-5);
-  border-bottom: 1px solid var(--line);
+  /* v0.5: sem border-bottom — a linha sob REV. 2026.06 saiu */
   overflow: hidden;
 }
 
@@ -139,4 +139,495 @@
   border-bottom: 1px solid var(--accent);
   padding-bottom: 2px;
   width: fit-content;
+}
+
+/* ---- Home: About como diário de expedição · v0.3 ----------
+   Banda escura onde a biografia vira uma ROTA: uma linha que se
+   desenha quando a seção entra na tela, com waypoints de dados
+   (origem, ofício, foco, status). Desktop: rota horizontal.
+   Mobile: itinerário vertical. Os marcadores circulares são os
+   parentes diretos da retícula do hero. */
+
+.about-band {
+  margin-block: var(--space-4) 0;
+}
+
+.about-band__inner {
+  display: grid;
+  gap: var(--space-4);
+  padding-block: var(--space-5);
+}
+
+.about-band__statement {
+  font-size: var(--text-lg);
+  line-height: 1.8;
+  max-width: 46ch;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+/* ---- A rota ----------------------------------------------- */
+
+.route {
+  position: relative;
+  padding-top: var(--space-2);
+}
+
+/* A linha da rota: desenha-se da esquerda quando a seção revela */
+.route__line {
+  position: absolute;
+  top: calc(var(--space-2) + 5px); /* atravessa o centro dos marcadores */
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--line-strong);
+  transform-origin: left;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .route__line {
+    transform: scaleX(0);
+    transition: transform 1100ms var(--ease-map) 150ms;
+  }
+
+  .js .is-visible .route__line {
+    transform: scaleX(1);
+  }
+}
+
+.route__list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-2);
+}
+
+.route__stop {
+  position: relative;
+  padding-top: 2rem; /* espaço para o marcador sobre a linha */
+  display: grid;
+  gap: 0.35rem;
+  align-content: start;
+}
+
+/* Waypoints chegam em sequência, como pontos plotados num mapa */
+@media (prefers-reduced-motion: no-preference) {
+  .js .route__stop {
+    opacity: 0;
+    translate: 0 10px;
+    transition:
+      opacity var(--dur-slow) var(--ease-map),
+      translate var(--dur-slow) var(--ease-map);
+  }
+
+  .js .is-visible .route__stop { opacity: 1; translate: 0 0; }
+  .js .is-visible .route__stop:nth-child(1) { transition-delay: 250ms; }
+  .js .is-visible .route__stop:nth-child(2) { transition-delay: 450ms; }
+  .js .is-visible .route__stop:nth-child(3) { transition-delay: 650ms; }
+  .js .is-visible .route__stop:nth-child(4) { transition-delay: 850ms; }
+}
+
+/* Marcador: anel + ponto, assentado sobre a linha da rota */
+.route__marker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  border: 1px solid var(--ink-dim);
+  border-radius: 50%;
+  background: var(--bg); /* "fura" a linha por trás */
+}
+
+.route__marker::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+.route__label {
+  color: var(--ink-faint);
+}
+
+.route__value {
+  font-size: var(--text-sm);
+  color: var(--ink-dim);
+  line-height: 1.55;
+  max-width: 22ch;
+}
+
+/* Waypoint final (status): o destino da rota, em vermelho vivo */
+.route__stop--active .route__marker {
+  border-color: var(--accent-hot);
+  color: var(--accent-hot);
+}
+
+.route__stop--active .route__marker::after { opacity: 1; }
+
+/* Ping de radar no destino: anel que expande e some */
+@media (prefers-reduced-motion: no-preference) {
+  .route__stop--active .route__marker::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border: 1px solid var(--accent-hot);
+    border-radius: 50%;
+    animation: waypoint-ping 3.2s var(--ease-map) infinite;
+  }
+}
+
+@keyframes waypoint-ping {
+  0%   { transform: scale(1);   opacity: 0.8; }
+  45%  { transform: scale(2.6); opacity: 0; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+
+.route__value a {
+  color: var(--accent-hot);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+}
+
+.route__value a:hover { opacity: 0.75; }
+
+/* ---- Mobile: a rota vira itinerário vertical --------------- */
+
+@media (max-width: 760px) {
+  .route { padding-top: 0; }
+
+  .route__line {
+    top: 0;
+    bottom: 0;
+    left: 5px;
+    right: auto;
+    width: 1px;
+    height: auto;
+    transform-origin: top;
+  }
+
+  .route__list {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .route__stop {
+    padding-top: 0;
+    padding-left: 2rem;
+  }
+
+  .route__marker { top: 0.25em; }
+
+  .route__value { max-width: none; }
+}
+
+@media (max-width: 760px) and (prefers-reduced-motion: no-preference) {
+  .js .route__line { transform: scaleY(0); }
+  .js .is-visible .route__line { transform: scaleY(1); }
+}
+
+/* Hero: respiro lateral seguro no mobile (corners não vazam) */
+@media (max-width: 480px) {
+  .hero { min-height: clamp(380px, 56dvh, 560px); }
+  .hero__corner { font-size: 0.58rem; }
+}
+
+/* ============================================================
+   About (about.html) · v0.4
+   Perfil (foto + bio + redes) sobre o papel claro; experiência
+   como rota vertical dentro de uma banda escura — o currículo
+   lido como itinerário.
+   ============================================================ */
+
+.profile {
+  display: grid;
+  grid-template-columns: minmax(220px, 300px) 1fr;
+  gap: var(--space-4);
+  align-items: start;
+  padding-block: var(--space-2) var(--space-5);
+}
+
+@media (max-width: 760px) {
+  .profile { grid-template-columns: 1fr; }
+}
+
+/* Moldura da foto: brackets cartográficos fixos, discretos */
+.profile__photo {
+  position: relative;
+  padding: 10px; /* respiro entre brackets e imagem */
+}
+
+.profile__photo::before,
+.profile__photo::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+.profile__photo::before {
+  top: 0;
+  left: 0;
+  border-top: 1px solid var(--accent);
+  border-left: 1px solid var(--accent);
+}
+
+.profile__photo::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid var(--accent);
+  border-right: 1px solid var(--accent);
+}
+
+.profile__photo img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  filter: grayscale(0.25); /* tom editorial; remova se preferir */
+}
+
+.profile__text {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+}
+
+.profile__text p {
+  color: var(--ink-dim);
+  line-height: 1.85;
+}
+
+/* Redes sociais: fileira de marcadores mono */
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  list-style: none;
+  padding: var(--space-2) 0 0;
+  border-top: 1px solid var(--line);
+  margin-top: var(--space-1);
+}
+
+.socials a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5em;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.socials a::before {
+  content: "//";
+  color: var(--accent);
+}
+
+.socials a:hover { color: var(--accent-hot); }
+
+/* ---- Experiência: rota vertical em banda escura ------------ */
+
+.experience-band { margin-block: 0; }
+
+.experience-band__inner {
+  display: grid;
+  gap: var(--space-3);
+  padding-block: var(--space-5);
+}
+
+/* Modificador: rota vertical em TODAS as larguras (timeline) */
+.route--vertical { padding-top: 0; }
+
+.route--vertical .route__line {
+  top: 0;
+  bottom: 0;
+  left: 5px;
+  right: auto;
+  width: 1px;
+  height: auto;
+  transform-origin: top;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .route--vertical .route__line { transform: scaleY(0); }
+  .js .is-visible .route--vertical .route__line,
+  .js .route--vertical.is-visible .route__line { transform: scaleY(1); }
+}
+
+.route--vertical .route__list {
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+.route--vertical .route__stop {
+  padding-top: 0;
+  padding-left: 2.2rem;
+}
+
+.route--vertical .route__marker { top: 0.25em; }
+
+.route--vertical .route__value {
+  max-width: 60ch;
+}
+
+/* ============================================================
+   Home: painéis Featured · v0.5
+   Três banners ultra-wide (Illustrations / Concept Art / Work
+   with me) substituem o grid. Mesma luz do papel, sem quebra de
+   contraste — o drama acontece só no hover: imagem escurece e
+   cresce, rótulo revela, brackets travam, linha vermelha traça.
+   ============================================================ */
+
+.feature-panels {
+  display: grid;
+  gap: 4px;
+  padding-bottom: var(--space-5);
+}
+
+.feature-panel {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 5; /* ultra-wide (+10% vertical aprovado) */
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+@media (max-width: 600px) {
+  .feature-panel { aspect-ratio: 2 / 1; } /* respiro no mobile */
+}
+
+.feature-panel__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    filter var(--dur-base) var(--ease-map),
+    transform var(--dur-slow) var(--ease-map);
+}
+
+/* A "pequena crescida" + escurecimento leve */
+.feature-panel:hover .feature-panel__img,
+.feature-panel:focus-visible .feature-panel__img {
+  filter: brightness(0.55) saturate(0.85);
+  transform: scale(1.03);
+}
+
+/* Brackets HUD: mesmos dos cards — travam nos cantos no hover */
+.feature-panel::before,
+.feature-panel::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 2;
+  transition:
+    opacity var(--dur-base) var(--ease-map),
+    translate var(--dur-base) var(--ease-map);
+}
+
+.feature-panel::before {
+  top: 0;
+  left: 0;
+  border-top: 1px solid var(--accent-hot);
+  border-left: 1px solid var(--accent-hot);
+  translate: 9px 9px;
+}
+
+.feature-panel::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid var(--accent-hot);
+  border-right: 1px solid var(--accent-hot);
+  translate: -9px -9px;
+}
+
+.feature-panel:hover::before,
+.feature-panel:focus-visible::before,
+.feature-panel:hover::after,
+.feature-panel:focus-visible::after {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* Índice cartográfico em repouso — cede lugar ao rótulo no hover */
+.feature-panel__idx {
+  position: absolute;
+  top: 0.9rem;
+  right: 1.1rem;
+  z-index: 1;
+  color: rgba(27, 19, 19, 0.35);
+  transition: opacity var(--dur-fast) var(--ease-map);
+}
+
+.feature-panel:hover .feature-panel__idx,
+.feature-panel:focus-visible .feature-panel__idx {
+  opacity: 0;
+}
+
+/* Rótulo: revela sobre a imagem escurecida */
+.feature-panel__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-map);
+  pointer-events: none;
+}
+
+.feature-panel:hover .feature-panel__overlay,
+.feature-panel:focus-visible .feature-panel__overlay {
+  opacity: 1;
+}
+
+.feature-panel__region {
+  color: rgba(240, 235, 230, 0.6);
+}
+
+.feature-panel__label {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: #f0ebe6;
+}
+
+.feature-panel__cta {
+  margin-left: auto;
+  color: var(--accent-hot);
+}
+
+/* Linha de rota: traça a base do painel no hover */
+.feature-panel__line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  z-index: 2;
+  background: var(--accent-hot);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-base) var(--ease-map) 100ms;
+}
+
+.feature-panel:hover .feature-panel__line,
+.feature-panel:focus-visible .feature-panel__line {
+  transform: scaleX(1);
+}
+
+@media (max-width: 600px) {
+  .feature-panel__label { font-size: var(--text-base); }
+  .feature-panel__overlay { gap: var(--space-1); }
 }

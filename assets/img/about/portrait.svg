@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Portrait placeholder">
+  <rect width="800" height="1000" fill="#e4e1da"/>
+  <g fill="none" stroke="#1b1313" stroke-opacity="0.12" stroke-width="1.5">
+    <circle cx="400" cy="380" r="150"/>
+    <path d="M150 1000 C150 730 280 640 400 640 C520 640 650 730 650 1000"/>
+  </g>
+  <g fill="none" stroke="#7a1f1a" stroke-width="1.2" stroke-opacity="0.5">
+    <circle cx="400" cy="500" r="330" stroke-dasharray="3 9"/>
+    <path d="M400 156v28 M400 816v28 M56 500h28 M716 500h28"/>
+  </g>
+  <text x="400" y="950" text-anchor="middle" fill="#99908a" font-family="monospace" font-size="17" letter-spacing="5">PORTRAIT · REPLACE ME</text>
+</svg>
