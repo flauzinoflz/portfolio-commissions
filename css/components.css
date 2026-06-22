@@ -308,14 +308,89 @@
   .spinner-reticle { animation: reticle-spin 1.8s linear infinite; }
 }
 
-/* ---- Lightbox: o nó do mapa ------------------------------ */
+/* ---- Barra de setores (subcategorias de Ilustrações) ------
+   Opção B: cada setor é um "bloco" com marcador circular (parente
+   da retícula). O ativo fica preenchido de tinta escura. Vazia
+   quando não há subcategorias no JSON — não ocupa espaço. */
+/* ---- Setores de Ilustrações (sem boxes, Opção B) ---------
+   Filtros minimalistas: só nome + bolinha-marcador, sem moldura.
+   Colados na linha divisória do título. Ativo = bolinha vermelha
+   preenchida + texto escuro; inativos apagados. Linguagem da nav. */
+.sector-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.1rem, 3vw, 1.6rem);
+  /* Cola na linha do título (a margem do .section-head fica acima) */
+  margin-top: calc(var(--space-4) * -1 + 0.4rem);
+  margin-bottom: var(--space-4);
+}
+
+.sector-bar:empty { display: none; }
+
+.sector {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.2rem 0;
+  background: none;
+  text-align: left;
+  transition: color var(--dur-fast) var(--ease-map);
+}
+
+.sector__dot {
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--accent-hot);
+  border-radius: 50%;
+  flex-shrink: 0;
+  opacity: 0.4;
+  transition:
+    opacity var(--dur-fast) var(--ease-map),
+    background-color var(--dur-fast) var(--ease-map);
+}
+
+.sector:hover .sector__dot { opacity: 1; }
+
+.sector.is-active .sector__dot {
+  background: var(--accent-hot);
+  opacity: 1;
+}
+
+.sector__txt { min-width: 0; }
+
+.sector__name {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  transition: color var(--dur-fast) var(--ease-map);
+}
+
+.sector:hover .sector__name { color: var(--ink); }
+
+.sector.is-active .sector__name { color: var(--ink); }
+
+/* "Sector 0X" / contagem removidos da Opção B */
+.sector__meta { display: none; }
+
+/* ---- Lightbox: o nó do mapa ------------------------------
+   Painel claro de papel; scrim cinza-escuro com vinheta ao redor
+   para dar foco à obra sem perder o DNA claro do site. Imagem com
+   zoom dinâmico (clique amplia no ponto do cursor, como o AS). */
 
 .lightbox {
   position: fixed;
   inset: 0;
   z-index: var(--z-lightbox);
   display: none;
-  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  /* Scrim cinza-escuro + vinheta: gradiente radial que escurece nas
+     bordas, mantendo o centro mais claro atrás do painel. Para
+     ajustar, edite as duas cores rgba abaixo. */
+  background:
+    radial-gradient(ellipse 90% 90% at 50% 50%,
+      rgba(40, 34, 33, 0.72) 0%,
+      rgba(24, 20, 19, 0.92) 100%);
   backdrop-filter: blur(14px);
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -345,7 +420,8 @@
 }
 
 .lightbox__panel {
-  width: min(1040px, 100% - var(--gutter) * 2);
+  /* Painel claro, +20% sobre o original (1040 -> 1248px) */
+  width: min(1248px, 100% - var(--gutter) * 2);
   margin: var(--space-5) auto;
   background: var(--bg-raised);
   border: 1px solid var(--line);
@@ -377,6 +453,7 @@
   gap: var(--space-1);
 }
 
+/* Botões: caixa reta, mono, outline vermelho no hover (original) */
 .lightbox__btn {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
@@ -403,9 +480,45 @@
 
 .lightbox__body { padding: var(--space-3); }
 
-.lightbox__cover {
-  width: 100%;
+/* Wrapper da imagem: contém o zoom dinâmico (overflow oculto para
+   a imagem ampliada não vazar). */
+.lightbox__cover-wrap {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 0;
   border: 1px solid var(--line);
+  background: var(--bg-deep);
+}
+
+.lightbox__cover {
+  display: block;
+  width: 100%;
+  /* Teto de altura: obras retrato (Pantheon) cabem inteiras na tela
+     sem rolar. Ultrawide (Witness) limita pela largura do painel.
+     object-fit contain preserva a proporção sem corte. O zoom
+     dinâmico amplia a partir daqui quando o usuário clica. */
+  max-height: 80vh;
+  object-fit: contain;
+  margin-inline: auto;
+  cursor: zoom-in;
+  transition: transform var(--dur-base) var(--ease-map);
+}
+
+/* Zoom dinâmico ativo: a imagem amplia a partir do tamanho CONTIDO
+   (o max-height é mantido como base), então o scale parte do que o
+   usuário vê e o overflow:hidden do wrapper corta o excedente — sem
+   scroll, sem estouro. O transform-origin segue o cursor (JS). */
+.lightbox__cover-wrap.is-zoomed .lightbox__cover {
+  cursor: zoom-out;
+  transform: scale(2.4);
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox__cover { transition: none; }
 }
 
 .lightbox__info {
@@ -419,17 +532,22 @@
 
 .lightbox__desc { color: var(--ink-dim); }
 
+/* Imagens adicionais em cascata vertical, largura cheia, cada uma
+   na sua proporção natural (sem crop). */
 .lightbox__extras {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: var(--space-2);
-  padding-top: var(--space-2);
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  padding-top: var(--space-3);
   border-top: 1px solid var(--line);
 }
 
 .lightbox__extras:empty { display: none; }
 
-.lightbox__extras img { border: 1px solid var(--line); }
+.lightbox__extras img {
+  width: 100%;
+  border: 1px solid var(--line);
+}
 
 body.lightbox-open { overflow: hidden; }
 

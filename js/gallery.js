@@ -17,6 +17,15 @@ const category = document.querySelector("main")?.dataset.category;
    a imagem; o grid (.gallery-grid) mantém a legenda. */
 const isStack = grid?.classList.contains("gallery-stack");
 
+/* Setores das Ilustrações. Ordem fixa controlada aqui (ALL sempre
+   primeiro); só renderiza os que têm obra no JSON. A chave casa com
+   o campo `subcategory`; o rótulo vem do i18n (sector.*). */
+const SECTOR_ORDER = ["key-art", "posters", "book-covers", "personal"];
+
+let categoryWorks = [];      // todas as obras da categoria desta página
+let activeSector = "all";    // setor selecionado ("all" = todos)
+const sectorBar = document.querySelector("[data-sectors]");
+
 if (grid) loadGallery();
 
 async function loadGallery() {
@@ -38,10 +47,27 @@ async function loadGallery() {
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
     const { works } = await response.json();
-    FLZ.works = filterWorks(works, category); // compartilhado c/ lightbox
 
-    renderGrid();
-    document.addEventListener("langchange", renderGrid);
+    // Ordena por `order` (menor primeiro); obras sem order vão ao fim
+    const ordered = [...works].sort(
+      (a, b) => (a.order ?? 9999) - (b.order ?? 9999)
+    );
+
+    // Lista completa da categoria desta página (base dos filtros)
+    categoryWorks = filterWorks(ordered, category);
+
+    // Setores (subcategorias) presentes nas Ilustrações — derivados
+    // do JSON, na ordem fixa definida em SECTOR_ORDER. Só aparecem os
+    // que têm ao menos uma obra. Concept-art e home não usam setores.
+    if (isStack && category === "illustration") {
+      buildSectorFilters();
+    }
+
+    applyFilter(); // popula FLZ.works conforme o setor ativo
+    document.addEventListener("langchange", () => {
+      renderSectorLabels();
+      renderGrid();
+    });
 
     // Avisa o lightbox que os cards existem (resolve deep links)
     document.dispatchEvent(new CustomEvent("gallery:ready"));
@@ -58,8 +84,92 @@ function filterWorks(works, category) {
   return works;
 }
 
+/* Monta a barra de setores a partir das subcategorias presentes.
+   ALL sempre primeiro; depois os de SECTOR_ORDER que têm ao menos
+   uma obra. Botão ativo recebe a classe is-active. */
+function buildSectorFilters() {
+  if (!sectorBar) return;
+
+  const present = SECTOR_ORDER.filter((sec) =>
+    categoryWorks.some((w) => w.subcategory === sec)
+  );
+  // Sem subcategorias no JSON → não mostra a barra
+  if (present.length === 0) return;
+
+  const sectors = ["all", ...present];
+
+  sectorBar.innerHTML = "";
+  sectors.forEach((sec, i) => {
+    const count =
+      sec === "all"
+        ? categoryWorks.length
+        : categoryWorks.filter((w) => w.subcategory === sec).length;
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "sector" + (sec === activeSector ? " is-active" : "");
+    btn.dataset.sector = sec;
+    btn.setAttribute("aria-pressed", String(sec === activeSector));
+
+    const dot = document.createElement("span");
+    dot.className = "sector__dot";
+    dot.setAttribute("aria-hidden", "true");
+
+    const txt = document.createElement("span");
+    txt.className = "sector__txt";
+
+    const name = document.createElement("span");
+    name.className = "sector__name";
+    name.dataset.sectorName = sec;
+
+    const meta = document.createElement("span");
+    meta.className = "sector__meta coord";
+    meta.dataset.sectorMeta = sec;
+    meta.textContent =
+      sec === "all"
+        ? `${count} ${FLZ.t("sector.nodes")}`
+        : `${FLZ.t("sector.sector")} ${String(i).padStart(2, "0")}`;
+
+    txt.append(name, meta);
+    btn.append(dot, txt);
+    sectorBar.appendChild(btn);
+  });
+
+  renderSectorLabels();
+
+  sectorBar.addEventListener("click", (event) => {
+    const btn = event.target.closest(".sector");
+    if (!btn) return;
+    activeSector = btn.dataset.sector;
+    sectorBar.querySelectorAll(".sector").forEach((b) => {
+      const on = b.dataset.sector === activeSector;
+      b.classList.toggle("is-active", on);
+      b.setAttribute("aria-pressed", String(on));
+    });
+    applyFilter();
+  });
+}
+
+// Rótulos dos setores (re-render no langchange)
+function renderSectorLabels() {
+  if (!sectorBar) return;
+  sectorBar.querySelectorAll("[data-sector-name]").forEach((el) => {
+    const sec = el.dataset.sectorName;
+    el.textContent = sec === "all" ? FLZ.t("sector.all") : FLZ.t(`sector.${sec}`);
+  });
+}
+
+// Aplica o setor ativo a FLZ.works e re-renderiza o grid + lightbox
+function applyFilter() {
+  FLZ.works =
+    activeSector === "all"
+      ? categoryWorks
+      : categoryWorks.filter((w) => w.subcategory === activeSector);
+  renderGrid();
+}
+
 function renderGrid() {
-  if (FLZ.works.length === 0) {
+  if (!FLZ.works || FLZ.works.length === 0) {
     grid.innerHTML =
       `<p class="gallery-status coord">${FLZ.t("gallery.empty")}</p>`;
     return;
