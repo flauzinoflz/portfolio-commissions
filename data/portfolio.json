@@ -1,10 +1,63 @@
 {
-  "$schema_note": "Each work: id (slug = folder in assets/img/works), title, category ('illustration' | 'concept-art'), cover (URL), width/height (real pixel size of cover, used to reserve space in the stacked gallery — zero layout shift), images (array of URLs, optional), description ({en, pt}), alt ({en, pt}, optional), year, featured (shown on home).",
+  "$schema_note": "Each work: id (slug = folder in assets/img/works), title, category ('illustration' | 'concept-art'), cover (URL, ~1000px for the grid), coverFull (URL, ~2560px shown in the lightbox; optional, falls back to cover), cover4k (URL, full-resolution original preloaded for the dynamic zoom; optional), width/height (real pixel size of cover, used to reserve space in the stacked gallery — zero layout shift), images (array of URLs, optional), description ({en, pt}), alt ({en, pt}, optional), subcategory (illustration sector: 'key-art' | 'posters' | 'book-covers' | 'personal'; optional), order (number for sorting within a gallery, lower = first; multiples of 10 recommended), year, featured (shown on home).",
   "works": [
+    {
+      "id": "pantheon-destiny-2",
+      "title": "Destiny 2 - Pantheon Official Promotional Material",
+      "category": "illustration",
+      "subcategory": "key-art",
+      "order": 10,
+      "cover": "assets/img/works/pantheon-destiny-2/cover.webp",
+      "coverFull": "assets/img/works/pantheon-destiny-2/cover-full.webp",
+      "cover4k": "assets/img/works/pantheon-destiny-2/cover-4k.webp",
+      "width": 2926,
+      "height": 4096,
+      "images": [
+        "assets/img/works/pantheon-destiny-2/01.webp",
+        "assets/img/works/pantheon-destiny-2/02.webp"
+      ],
+      "description": {
+        "en": "",
+        "pt": ""
+      },
+      "alt": {
+        "en": "Pantheon Destiny 2 — official promotional illustration",
+        "pt": "Pantheon Destiny 2 — ilustração promocional oficial"
+      },
+      "year": 2024,
+      "featured": true
+    },
+    {
+      "id": "the-witness-battle-destiny-2",
+      "title": "The Witness Battle - Destiny 2 - Commission Piece",
+      "category": "illustration",
+      "subcategory": "key-art",
+      "order": 20,
+      "cover": "assets/img/works/the-witness-battle-destiny-2/cover.webp",
+      "coverFull": "assets/img/works/the-witness-battle-destiny-2/cover-full.webp",
+      "cover4k": "assets/img/works/the-witness-battle-destiny-2/cover-4k.webp",
+      "width": 4500,
+      "height": 2548,
+      "images": [
+        "assets/img/works/the-witness-battle-destiny-2/01.webp",
+        "assets/img/works/the-witness-battle-destiny-2/02.webp"
+      ],
+      "description": {
+        "en": "",
+        "pt": ""
+      },
+      "alt": {
+        "en": "The Witness Battle — Destiny 2 commissioned illustration",
+        "pt": "The Witness Battle — ilustração comissionada de Destiny 2"
+      },
+      "year": 2024,
+      "featured": true
+    },
     {
       "id": "vigia-do-deserto",
       "title": "Desert Watcher",
       "category": "illustration",
+      "order": 100,
       "cover": "assets/img/works/vigia-do-deserto/cover.svg",
       "width": 800,
       "height": 1000,
@@ -27,6 +80,7 @@
       "id": "cartografa",
       "title": "Cartographer",
       "category": "illustration",
+      "order": 110,
       "cover": "assets/img/works/cartografa/cover.svg",
       "width": 800,
       "height": 1000,
@@ -48,6 +102,7 @@
       "id": "ultimo-farol",
       "title": "Last Lighthouse",
       "category": "illustration",
+      "order": 120,
       "cover": "assets/img/works/ultimo-farol/cover.svg",
       "width": 800,
       "height": 1000,
@@ -67,6 +122,7 @@
       "id": "colosso-adormecido",
       "title": "Sleeping Colossus",
       "category": "concept-art",
+      "order": 10,
       "cover": "assets/img/works/colosso-adormecido/cover.svg",
       "width": 800,
       "height": 1000,
@@ -89,6 +145,7 @@
       "id": "ruinas-de-vidro",
       "title": "Glass Ruins",
       "category": "concept-art",
+      "order": 20,
       "cover": "assets/img/works/ruinas-de-vidro/cover.svg",
       "width": 800,
       "height": 1000,
@@ -110,6 +167,7 @@
       "id": "sonda-errante",
       "title": "Wandering Probe",
       "category": "concept-art",
+      "order": 30,
       "cover": "assets/img/works/sonda-errante/cover.svg",
       "width": 800,
       "height": 1000,
@@ -132,6 +190,8 @@
       "id": "sample_01",
       "title": "Sample 01",
       "category": "illustration",
+      "subcategory": "posters",
+      "order": 30,
       "cover": "assets/img/works/sample_01/cover.svg",
       "width": 1600,
       "height": 1100,
@@ -154,6 +214,8 @@
       "id": "sample_02",
       "title": "Sample 02",
       "category": "illustration",
+      "subcategory": "book-covers",
+      "order": 40,
       "cover": "assets/img/works/sample_02/cover.svg",
       "width": 1200,
       "height": 1500,
@@ -176,6 +238,8 @@
       "id": "sample_03",
       "title": "Sample 03",
       "category": "illustration",
+      "subcategory": "personal",
+      "order": 50,
       "cover": "assets/img/works/sample_03/cover.svg",
       "width": 1500,
       "height": 1500,
@@ -198,6 +262,7 @@
       "id": "sample_04",
       "title": "Sample 04",
       "category": "concept-art",
+      "order": 40,
       "cover": "assets/img/works/sample_04/cover.svg",
       "width": 1400,
       "height": 1900,
@@ -220,6 +285,7 @@
       "id": "sample_05",
       "title": "Sample 05",
       "category": "concept-art",
+      "order": 50,
       "cover": "assets/img/works/sample_05/cover.svg",
       "width": 1800,
       "height": 1000,
@@ -242,6 +308,7 @@
       "id": "sample_06",
       "title": "Sample 06",
       "category": "concept-art",
+      "order": 60,
       "cover": "assets/img/works/sample_06/cover.svg",
       "width": 1300,
       "height": 1600,
