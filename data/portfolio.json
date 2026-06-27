@@ -2,6 +2,35 @@
   "$schema_note": "Each work: id (slug = folder in assets/img/works), title, category ('illustration' | 'concept-art'), cover (URL, ~1000px for the grid), coverFull (URL, ~2560px shown in the lightbox; optional, falls back to cover), cover4k (URL, full-resolution original preloaded for the dynamic zoom; optional), width/height (real pixel size of cover, used to reserve space in the stacked gallery — zero layout shift), images (array of URLs, optional), description ({en, pt}), alt ({en, pt}, optional), subcategory (illustration sector: 'key-art' | 'posters' | 'book-covers' | 'personal'; optional), order (number for sorting within a gallery, lower = first; multiples of 10 recommended), year, featured (shown on home).",
   "works": [
     {
+      "id": "pantheon-2-destiny-2",
+      "title": "Destiny 2 - Pantheon 2 Official Promotional Material",
+      "category": "illustration",
+      "subcategory": "key-art",
+      "order": 5,
+      "cover": "assets/img/works/pantheon-2-destiny-2/cover.webp",
+      "coverFull": "assets/img/works/pantheon-2-destiny-2/cover-full.webp",
+      "cover4k": "assets/img/works/pantheon-2-destiny-2/cover-4k.webp",
+      "width": 3000,
+      "height": 1687,
+      "images": [
+        "assets/img/works/pantheon-2-destiny-2/01.webp",
+        "assets/img/works/pantheon-2-destiny-2/02.webp",
+        "assets/img/works/pantheon-2-destiny-2/03.webp",
+        "assets/img/works/pantheon-2-destiny-2/04.webp",
+        "assets/img/works/pantheon-2-destiny-2/05.webp"
+      ],
+      "description": {
+        "en": "",
+        "pt": ""
+      },
+      "alt": {
+        "en": "Destiny 2 Pantheon 2 — official promotional illustration",
+        "pt": "Destiny 2 Pantheon 2 — ilustração promocional oficial"
+      },
+      "year": 2025,
+      "featured": true
+    },
+    {
       "id": "pantheon-destiny-2",
       "title": "Destiny 2 - Pantheon Official Promotional Material",
       "category": "illustration",
@@ -25,6 +54,33 @@
         "pt": "Pantheon Destiny 2 — ilustração promocional oficial"
       },
       "year": 2024,
+      "featured": true
+    },
+    {
+      "id": "rite-of-the-nine-destiny-2",
+      "title": "Destiny 2 - Rite of the Nine Official Promotional Material",
+      "category": "illustration",
+      "subcategory": "key-art",
+      "order": 15,
+      "cover": "assets/img/works/rite-of-the-nine-destiny-2/cover.webp",
+      "coverFull": "assets/img/works/rite-of-the-nine-destiny-2/cover-full.webp",
+      "cover4k": "assets/img/works/rite-of-the-nine-destiny-2/cover-4k.webp",
+      "width": 4000,
+      "height": 5600,
+      "images": [
+        "assets/img/works/rite-of-the-nine-destiny-2/01.webp",
+        "assets/img/works/rite-of-the-nine-destiny-2/02.webp",
+        "assets/img/works/rite-of-the-nine-destiny-2/03.webp"
+      ],
+      "description": {
+        "en": "",
+        "pt": ""
+      },
+      "alt": {
+        "en": "Destiny 2 Rite of the Nine — official promotional illustration",
+        "pt": "Destiny 2 Rite of the Nine — ilustração promocional oficial"
+      },
+      "year": 2025,
       "featured": true
     },
     {
@@ -117,6 +173,33 @@
       },
       "year": 2025,
       "featured": false
+    },
+    {
+      "id": "surt-and-storm-dragon-destiny-2",
+      "title": "Surt and the Storm Dragon - Commission Piece",
+      "category": "concept-art",
+      "order": 5,
+      "cover": "assets/img/works/surt-and-storm-dragon-destiny-2/cover.webp",
+      "coverFull": "assets/img/works/surt-and-storm-dragon-destiny-2/cover-full.webp",
+      "cover4k": "assets/img/works/surt-and-storm-dragon-destiny-2/cover-4k.webp",
+      "width": 4000,
+      "height": 2251,
+      "images": [
+        "assets/img/works/surt-and-storm-dragon-destiny-2/01.webp",
+        "assets/img/works/surt-and-storm-dragon-destiny-2/02.webp",
+        "assets/img/works/surt-and-storm-dragon-destiny-2/03.webp",
+        "assets/img/works/surt-and-storm-dragon-destiny-2/04.webp"
+      ],
+      "description": {
+        "en": "",
+        "pt": ""
+      },
+      "alt": {
+        "en": "Surt and the Storm Dragon — commissioned concept art",
+        "pt": "Surt and the Storm Dragon — concept art comissionada"
+      },
+      "year": 2025,
+      "featured": true
     },
     {
       "id": "colosso-adormecido",

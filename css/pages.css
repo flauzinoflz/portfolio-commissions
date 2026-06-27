@@ -13,9 +13,44 @@
   text-align: center;
   min-height: clamp(420px, 64dvh, 720px);
   padding-block: var(--space-5);
-  /* v0.5: sem border-bottom — a linha sob REV. 2026.06 saiu */
+   /* sem border-bottom: a linha sob REV. 2026.06 foi removida */
+  /* o hero ocupa a largura total da janela (sem .container) para o
+     fundo sangrar de borda a borda; o conteúdo de texto fica numa
+     coluna central legível via max-width abaixo. */
   overflow: hidden;
 }
+
+/* conteúdo textual do hero: coluna central legível, centralizada */
+.hero__eyebrow,
+.hero__title,
+.hero__tag {
+  max-width: var(--container);
+  margin-inline: auto;
+}
+
+/* Carta celeste de fundo: mapa estelar full-bleed (cobre 100vw, de
+   borda a borda da janela), nítido e claro, fixo. Sólido no topo e
+   dissolvendo para a base, onde mistura com o papel. */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  z-index: 0;
+  background-image: url("../assets/img/bg/star-chart.webp");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.8;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 50%, transparent 92%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 50%, transparent 92%);
+  pointer-events: none;
+}
+
+/* Conteúdo do hero acima da carta */
+.hero > * { position: relative; z-index: 1; }
 
 .hero__eyebrow { margin-bottom: var(--space-2); }
 
@@ -66,11 +101,17 @@
 }
 
 .hero__corner--tl { top: var(--space-3); left: var(--gutter); }
-.hero__corner--br { bottom: var(--space-3); right: var(--gutter); }
+.hero__corner--tr { top: var(--space-3); right: var(--gutter); }
 
 /* ---- Home: faixa de destaques ----------------------------- */
 
-.featured { padding-block: var(--space-2) 0; }
+/* Featured mais largo que o container padrão: os painéis-portal
+   ganham mais presença na home. Sobrescreve a largura do .container
+   só aqui, mantendo o respiro lateral mínimo (gutter). */
+.featured {
+  padding-block: var(--space-2) 0;
+  width: min(1600px, 100% - var(--gutter) * 2);
+}
 
 /* ---- Commissions ------------------------------------------ */
 
@@ -141,7 +182,7 @@
   width: fit-content;
 }
 
-/* ---- Home: About como diário de expedição · v0.3 ----------
+/* ---- Home: About como diário de expedição -----------------
    Banda escura onde a biografia vira uma ROTA: uma linha que se
    desenha quando a seção entra na tela, com waypoints de dados
    (origem, ofício, foco, status). Desktop: rota horizontal.
@@ -331,12 +372,12 @@
 
 /* Hero: respiro lateral seguro no mobile (corners não vazam) */
 @media (max-width: 480px) {
-  .hero { min-height: clamp(380px, 56dvh, 560px); }
+  .hero { min-height: clamp(440px, calc(100dvh - 6rem), 720px); }
   .hero__corner { font-size: 0.58rem; }
 }
 
 /* ============================================================
-   About (about.html) · v0.4
+   About (about.html)
    Perfil (foto + bio + redes) sobre o papel claro; experiência
    como rota vertical dentro de uma banda escura — o currículo
    lido como itinerário.
@@ -476,7 +517,7 @@
 }
 
 /* ============================================================
-   Home: painéis Featured · v0.5
+   Home: painéis Featured
    Três banners ultra-wide (Illustrations / Concept Art / Work
    with me) substituem o grid. Mesma luz do papel, sem quebra de
    contraste — o drama acontece só no hover: imagem escurece e
